@@ -1,0 +1,29 @@
+{
+    "users": [
+      {
+        "id": 1,
+        "name": "John Doe",
+        "email": "john@example.com",
+        "age": 28,
+        "active": true,
+        "skills": ["JavaScript", "HTML", "CSS"]
+      },
+      {
+        "id": 2,
+        "name": "Jane Smith",
+        "email": "jane@example.com",
+        "age": 22,
+        "active": false,
+        "skills": ["Python", "Machine Learning"]
+      },
+      {
+        "id": 3,
+        "name": "Sam Green",
+        "email": "sam@example.com",
+        "age": 35,
+        "active": true,
+        "skills": ["Java", "C++", "Python"]
+      }
+    ]
+  }
+  
