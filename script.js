@@ -6,15 +6,16 @@ document.addEventListener('DOMContentLoaded', function() {
     const searchInput = document.getElementById("search");
     
     icon.addEventListener('click', function() {
-        if (aside.style.display === 'block') {
-            aside.style.display = 'none';
+        if (aside.classList.contains('show')) {
+            aside.classList.remove('show');
+            icon.classList.remove('show');
             icon.style.backgroundColor = 'white';
             mainContainer.classList.remove('shifted'); 
         } else {
-            aside.style.display = 'block';
+            aside.classList.add('show');
+            icon.classList.add('show');
             icon.style.backgroundColor = '#6f6f6f';
             mainContainer.classList.add('shifted'); 
-            aside.style.transition("margin-left 0.5 ease")
         }
     });
     
