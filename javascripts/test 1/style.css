@@ -1,0 +1,58 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+.page {
+    display: grid;
+    height: 100vh;
+    background-color: #c5c4c4;
+    grid-template-columns: repeat(10, 1fr);
+    grid-template-rows: 20% 60% 20%;
+    grid-template-areas:
+        "logo logo nav nav nav nav nav nav nav nav"
+        "cont cont cont cont cont cont cont cont sidebar sidebar"
+        "footer footer footer footer footer footer footer footer . . ."; /* Adjusted footer */
+}
+
+h3 {
+    grid-area: logo;
+    background-color: blue;
+    color: white;
+}
+
+nav {
+    grid-area: nav;
+    background-color: red;
+    color: white;
+}
+
+nav ul {
+    list-style-type: none;
+}
+
+aside {
+    grid-area: sidebar;
+}
+
+section {
+    grid-area: cont;
+}
+
+footer {
+    grid-area: footer;
+}
+
+/* Media Query for Responsiveness */
+@media (max-width: 768px) {
+    .page {
+        grid-template-columns: 1fr; /* 1 column layout */
+        grid-template-areas: 
+            "logo"
+            "nav"
+            "cont"
+            "sidebar"
+            "footer";
+    }
+}
