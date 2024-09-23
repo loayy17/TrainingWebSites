@@ -1,0 +1,65 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: "Aref Ruqaa", serif;
+    font-weight: 400;
+    font-style: normal;
+    
+}
+body {
+    background-image: url("./imgs/desktop-wallpaper-green-background-islamic-religious.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+
+
+}
+h1 {
+    display: flex;
+    justify-content: center;
+    margin-top: 2%;
+}
+.container {
+    display: flex;
+}
+.container .cards {
+    display: flex;
+    margin: 5% auto;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+.card {
+    border: 2px solid rgb(2, 75, 2);
+    margin: 10px;
+    width: 125px;
+    height: 125px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    background-color: rgb(2, 75, 2);
+}
+.card h5 {
+    color: green;
+    border: 1px solid white;
+    padding: 2px;
+    width: 80%;
+    text-align: center;
+    background-color: white;
+    font-size: larger;
+}
+.card h4 {
+    color: rgb(254, 254, 254);
+    border: 1px solid white;
+    padding: 2px;
+    width: 100%;
+    text-align: center;
+    background-color: green;
+    margin-bottom: 40px;
+    font-size: larger;
+}
+.time {
+    color: black;
+    margin: 2%;
+    text-align: center;
+}

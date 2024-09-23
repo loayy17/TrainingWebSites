@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>AL-Adhan</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Aref+Ruqaa:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+</head>
+<body>
+    <h1 dir="rtl">مواقيت الصلاة</h1>
+    <div class="time"></div>
+    <select dir="rtl" onchange="city()" name="city" id="city" style="display: block;text-align: center; margin: 15px auto;" >
+        <option value="Amman" >عمان</option>
+        <option value="Aqaba">ألعقبة</option>
+        <option value="Irbid">اربد</option>
+    </select>
+    <header></header>
+    <div class="container" dir="rtl">
+        <div class="cards">
+            <div class="card">
+                <span class="up"></span>
+                <h4>الفجر</h4>
+                <h5 id="fajr"></h5>
+            </div>
+            <div class="card">
+
+                <h4>الشروق</h4>
+                <h5 id="sunrise"></h5>
+            </div>
+            <div class="card">
+
+                <h4>الظهر</h4>
+                <h5 id="dhuhr"></h5>
+            </div>
+            <div class="card">
+
+                <h4>العصر</h4>
+                <h5 id="asr"></h5>
+            </div>
+            <div class="card">
+
+                <h4>المغرب</h4>
+                <h5 id="sunset"></h5>
+            </div>
+            <div class="card">
+
+                <h4>العشاء</h4>
+                <h5 id="isha"></h5>
+            </div>
+        </div>
+    </div>
+    <footer>
+
+    </footer>
+    <script src="script.js"></script>
+</body>
+</html>
