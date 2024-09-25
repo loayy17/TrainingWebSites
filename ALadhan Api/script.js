@@ -24,7 +24,7 @@ function city() {
   let cityLocation = document.getElementById("city").value || "Amman";
   axios
     .get(
-      `http://api.aladhan.com/v1/calendarByCity?city=${cityLocation}&country=JO`
+      `https://api.aladhan.com/v1/calendarByCity?city=${cityLocation}&country=JO`
     )
     .then((response) => {
       let timings = response.data.data[formattedDate - 1].timings;
