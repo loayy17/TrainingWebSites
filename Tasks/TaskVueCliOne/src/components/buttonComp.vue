@@ -1,11 +1,13 @@
 <template>
-
+            <div class="col">
+              <button class="w-100" style="background-color: #5BC0DE;color: #000;">{{ numberButto }}</button>
+            </div>
 </template>
 
 <script setup lang="ts">
 import { defineProps } from 'vue';
 
-const props = defineProps<{ numberFromParent: number }>();
+const props = defineProps<{ numberButto: number }>();
 </script>
 
 <style scoped>
