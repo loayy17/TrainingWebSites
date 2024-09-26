@@ -6,11 +6,27 @@
         style="margin-top: 100px"
       >
         <div class="row">
-          <pre style="font-size: xx-large;">Total :            {{totalResult}}</pre>
+          <pre style="font-size: xx-large">
+Total :            {{ totalResult }}</pre
+          >
         </div>
         <div class="row">
-          <div class="col"><h5 v-show="checkOperator" style="color: white;border: 1px solid red; background-color: red;text-align: center;"> Error input </h5></div>
-          <div class="col"><h1>{{ result }}</h1></div>
+          <div class="col">
+            <h5
+              v-show="checkOperator"
+              style="
+                color: white;
+                border: 1px solid red;
+                background-color: red;
+                text-align: center;
+              "
+            >
+              Error input
+            </h5>
+          </div>
+          <div class="col">
+            <h1>{{ result }}</h1>
+          </div>
         </div>
       </div>
 
@@ -19,7 +35,7 @@
           <div class="row">
             <div class="col-3 p-1">
               <button
-                @click="appendNumber(7)"
+                @click="appendNumber('7')"
                 class="btn"
                 style="
                   background-color: #5bc0de;
@@ -33,7 +49,7 @@
             </div>
             <div class="col-3 p-1">
               <button
-                @click="appendNumber(8)"
+                @click="appendNumber('8')"
                 class="btn"
                 style="
                   background-color: #5bc0de;
@@ -47,7 +63,7 @@
             </div>
             <div class="col-3 p-1">
               <button
-                @click="appendNumber(9)"
+                @click="appendNumber('9')"
                 class="btn"
                 style="
                   background-color: #5bc0de;
@@ -77,7 +93,7 @@
           <div class="row">
             <div class="col-3 p-1">
               <button
-                @click="appendNumber(4)"
+                @click="appendNumber('4')"
                 class="btn"
                 style="
                   background-color: #5bc0de;
@@ -91,7 +107,7 @@
             </div>
             <div class="col-3 p-1">
               <button
-                @click="appendNumber(5)"
+                @click="appendNumber('5')"
                 class="btn"
                 style="
                   background-color: #5bc0de;
@@ -105,7 +121,7 @@
             </div>
             <div class="col-3 p-1">
               <button
-                @click="appendNumber(6)"
+                @click="appendNumber('6')"
                 class="btn"
                 style="
                   background-color: #5bc0de;
@@ -135,7 +151,7 @@
           <div class="row">
             <div class="col-3 p-1">
               <button
-                @click="appendNumber(1)"
+                @click="appendNumber('1')"
                 class="btn"
                 style="
                   background-color: #5bc0de;
@@ -149,7 +165,7 @@
             </div>
             <div class="col-3 p-1">
               <button
-                @click="appendNumber(2)"
+                @click="appendNumber('2')"
                 class="btn"
                 style="
                   background-color: #5bc0de;
@@ -163,7 +179,7 @@
             </div>
             <div class="col-3 p-1">
               <button
-                @click="appendNumber(3)"
+                @click="appendNumber('3')"
                 class="btn"
                 style="
                   background-color: #5bc0de;
@@ -193,7 +209,7 @@
           <div class="row">
             <div class="col-6 p-1">
               <button
-                @click="appendNumber(0)"
+                @click="appendNumber('0')"
                 class="btn"
                 style="
                   background-color: #5bc0de;
@@ -298,45 +314,28 @@
 import { ref } from "vue";
 const result = ref("0");
 const operators = ["+", "-", "*", "/"];
-const checkOperator = ref(false)
-const totalResult = ref('')
-const appendNumber = (num1) => {
+const checkOperator = ref(false);
+const totalResult = ref("");
+const appendNumber = (num1: string) => {
   console.log(result.value);
   if (result.value == "0" || operators.includes(result.value[0])) {
     result.value = num1.toString();
-  } else if (result.value[result.value.length - 1] ==='.' &&
-  num1.toString() ==='.')
-  {
-    //nothing 
-  } 
-  else if (
+  } else if (
+    result.value[result.value.length - 1] === "." &&
+    num1.toString() === "."
+  ) {
+    //nothing
+  } else if (
     operators.includes(result.value[result.value.length - 1]) &&
     operators.includes(num1.toString())
-  ) 
-  {
-    checkOperator.value = true
-  } else if (
-    (result.value[result.value.length - 1] === '.') &&
-    (num1 === '.'))
-    {
-      // nothing 
-    }
-  else {
-    checkOperator.value = false
+  ) {
+    checkOperator.value = true;
+  } else if (result.value[result.value.length - 1] === "." && num1 === ".") {
+    // nothing
+  } else {
+    checkOperator.value = false;
     result.value += num1.toString();
   }
-};
-const add = (num1, num2) => {
-  result.value += num1 + num2;
-};
-const sub = (num1, num2) => {
-  result.value += num1 - num2;
-};
-const mul = (num1, num2) => {
-  result.value += num1 * num2;
-};
-const div = (num1, num2) => {
-  result.value += num1 / num2;
 };
 const clear = () => {
   if (result.value.length === 1) {
@@ -344,39 +343,43 @@ const clear = () => {
   } else {
     result.value = result.value.slice(0, -1);
   }
-
 };
 const clearAll = () => {
   result.value = "0";
-  checkOperator.value = false
-
+  checkOperator.value = false;
 };
 const findResult = () => {
-  const arr = result.value.match(/(\d+(\.\d+)?|[+\-*\/])/g);
+  const arr: RegExpMatchArray | any = result.value.match(
+    /(\d+(\.\d+)?|[+\-*\/])/g
+  );
   console.log(arr);
-  let total = parseFloat(arr[0]); // Start with the first number
-  
+  let total: number = parseFloat(arr[0]);
+
   for (let i = 1; i < arr.length; i += 2) {
-    const operator = arr[i];
-    const nextNum = parseFloat(arr[i + 1]);
+    const operator: string = arr[i];
+    const nextNum: number = parseFloat(arr[i + 1]);
 
     switch (operator) {
-      case '+':
+      case "+":
         total += nextNum;
         break;
-      case '-':
+      case "-":
         total -= nextNum;
         break;
-      case '*':
+      case "*":
         total *= nextNum;
         break;
-      case '/':
-        if (nextNum !== 0) total /= nextNum;
+      case "/":
+        if (nextNum != 0) {
+          total /= nextNum;
+        } else {
+          result.value = "Can not Divide by Zero";
+        }
         break;
     }
   }
-  result.value = total.toString()
-  totalResult.value= total.toString(); // Output the final result
+  result.value = total.toString();
+  totalResult.value = total.toString(); // Output the final result
 };
 console.log(result.value);
 </script>
