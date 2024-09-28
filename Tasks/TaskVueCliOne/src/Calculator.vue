@@ -352,36 +352,26 @@ const findResult = () => {
   const arr: RegExpMatchArray | any = result.value.match(
     /(\d+(\.\d+)?|[+\-*\/])/g
   );
-  console.log(arr);
-  let total: number = parseFloat(arr[0]);
-
-  for (let i = 1; i < arr.length; i += 2) {
-    const operator: string = arr[i];
-    const nextNum: number = parseFloat(arr[i + 1]);
-
-    switch (operator) {
-      case "+":
-        total += nextNum;
-        break;
-      case "-":
-        total -= nextNum;
-        break;
-      case "*":
-        total *= nextNum;
-        break;
-      case "/":
-        if (nextNum != 0) {
-          total /= nextNum;
-        } else {
-          result.value = "Can not Divide by Zero";
-        }
-        break;
+  let operator:string|number = "";
+  let totalResult = arr.reduce((a:any, b:any) => {
+    if (isNaN(b)) {
+      operator = b;
+    } else {
+      if (operator === "+") {
+        a = parseFloat(a) + parseFloat(b);
+      } else if (operator === "-") {
+        a = parseFloat(a) - parseFloat(b);
+      } else if (operator === "*") {
+        a = parseFloat(a) * parseFloat(b);
+      } else if (operator === "/") {
+        a = parseFloat(a) / parseFloat(b);
+      }
     }
-  }
-  result.value = total.toString();
-  totalResult.value = total.toString(); // Output the final result
+    return a;
+  });
+result.value = totalResult.toString();
 };
-console.log(result.value);
+
 </script>
 <style>
 .container {

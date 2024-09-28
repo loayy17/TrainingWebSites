@@ -1,47 +1,57 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>VueJS</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css" />
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
-</head>
-<body>
+  </head>
+  <body>
     <div id="app" :style="{ color: color }">
-        <!-- use variable from vue app -->
-        <h1>{{ message }}</h1>
-        <!-- use v-on as shorthand @ to increment counter  -->
-        <button @click="incrementOne"> {{ counter }}</button> 
-        <select name="Country" id="country" v-model="selectedCountry">
-            <option value="JORDAN" selected>JORDAN</option>
-            <option value="PALESTINE">PALESTINE</option>
-            <option value="IRAQ">IRAQ</option>
-            <option value="SAUDI ARABIA">SAUDI ARABIA</option>
-        </select>
-        <h4> {{ selectedCountry }}</h4>
-        </div>
-
-
-
+      <!-- use variable from vue app -->
+      <h1>{{ message }}</h1>
+      <!-- use v-on as shorthand @ to increment counter  -->
+      <button @click="incrementOne">{{ counter }}</button>
+      <select name="Country" id="country" v-model="selectedCountry">
+        <option value="JORDAN" selected>JORDAN</option>
+        <option value="PALESTINE">PALESTINE</option>
+        <option value="IRAQ">IRAQ</option>
+        <option value="SAUDI ARABIA">SAUDI ARABIA</option>
+      </select>
+      <h4>{{ selectedCountry }}</h4>
+      <form style="display: flex;">
+        <button type="button" @click="counter++">Increase</button>
+        <h4>{{ counter }}</h4>
+        <button type="button" @click="counter--">Decrease</button>
+      </form>
+      <h1></h1>
+      <input type="text" @input="addName($event , 'hindi')">
+      <h5> {{ nameOfInput }}</h5>
+      <h5 v-once="nameOfInput($event,'5')">re {{ nameOfInput }}</h5>
+    </div>
 
     <script>
-        const app = Vue.createApp({
-            data() {
-                return {
-                    message: "Hello, World!",
-                    color: "red",
-                    counter:0,
-                    selectedCountry:"JORDAN"
-                }
-            },
-            methods: {
-                incrementOne(){
-                    this.counter++
-                }
-            }
-        });
-        app.mount("#app")
+      const app = Vue.createApp({
+        data() {
+          return {
+            message: "Hello, World!",
+            color: "red",
+            counter: 0,
+            selectedCountry: "JORDAN",
+            nameOfInput: ''
+          };
+        },
+        methods: {
+          incrementOne() {
+            this.counter++;
+          },
+          addName(event,last){
+            this.nameOfInput = event.target.value+ " " +last
+          }
+        },
+      });
+      app.mount("#app");
     </script>
-</body>
+  </body>
 </html>

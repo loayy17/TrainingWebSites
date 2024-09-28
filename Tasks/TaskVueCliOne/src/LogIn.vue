@@ -23,11 +23,12 @@
         <span
           class="bg-body border-end-0 input-group-text"
           id="basic-addon1"
-          :class="{ 'border-danger': state.userName === 'invalid' }"
+          :class="state.userName === 'invalid' ? 'border-danger' : state.userName === 'valid' ? 'border-success' : '' "
           ><i class="bi bi-person-fill"></i
         ></span>
         <input
-          :class="{ 'border-danger': state.userName === 'invalid' }"
+          :class="state.userName === 'invalid' ? 'border-danger' : state.userName === 'valid' ? 'border-success' : '' "
+
           v-auto-focus
           v-model="inputUsername"
           type="text"
@@ -36,14 +37,17 @@
           aria-label="Username"
           aria-describedby="basic-addon1"
           id="validationCustomUsername"
-          @input="() => (state.userName = 'unset')"
+          @input="() => (state.userName = ValidationStateEnum.unset)"
         />
       </div>
       <div class="input-group mb-3 w-75 m-auto">
-        <span class="bg-body border-end-0 input-group-text" id="basic-addon1"
+        <span 
+        :class="state.userName === 'invalid' ? 'border-danger' : state.userName === 'valid' ? 'border-success' : '' "
+        class="bg-body border-end-0 input-group-text" id="basic-addon1"
           ><i class="bi bi-lock-fill"></i
         ></span>
         <input
+        :class="state.userName === 'invalid' ? 'border-danger' : state.userName === 'valid' ? 'border-success' : '' "
           v-model="inputPassword"
           type="password"
           class="form-control border-start-0"
@@ -74,7 +78,7 @@
 </template>
 
 <script setup lang="ts">
-import { computed, onMounted, reactive, ref, type Ref } from "vue";
+import { onMounted, reactive, ref, type Ref } from "vue";
 import axios from "axios";
 import { ValidationStateEnum } from "./assets/validationState";
 const inputUsername  = ref("") as Ref<string>;
@@ -85,11 +89,6 @@ const state = reactive({
   userName: ValidationStateEnum.unset,
   password: ValidationStateEnum.unset,
 });
-// todo : validationStateEnum => valid invalid unset
-const errorMessages = computed(() => ({
-  userName: state.userName === "invalid" ? "user name is invalid" : "",
-  password: state.password === "invalid" ? "password is invalid" : "",
-}));
 
 onMounted(async () => {
   try {
@@ -103,16 +102,18 @@ onMounted(async () => {
 const logIn = (): void => {
   if (
     Users.value.some(
-      (value) =>
+      (value : any) =>
         value["username"] === inputUsername.value &&
         value["password"] === inputPassword.value
     )
   ) {
     userExist.value = 1;
+    state.userName = ValidationStateEnum.valid;
+    state.password = ValidationStateEnum.valid;
   } else {
     userExist.value = 2;
-    state.userName = "invalid";
-    state.password = "invalid";
+    state.userName = ValidationStateEnum.invalid;
+    state.password = ValidationStateEnum.invalid;
   }
 };
 const vAutoFocus = {
