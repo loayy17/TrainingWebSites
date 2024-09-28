@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mini Project 2</title>
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/normalize.css/normalize.css"
+    />
+    <style type="text/css">
+      #app form {
+        display: flex;
+        justify-content: center;
+      }
+      .gallery {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        grid-gap: 10px;
+      }
+      .card {
+        border: 1px solid #ccc;
+      }
+      .title {
+        text-align: center;
+      }
+
+      .card img {
+        width: 100%;
+        position: relative;
+        border-radius: 25px;
+      }
+      .favorite-button {
+        background: none;
+        border: none;
+        color: #ccc;
+        font-size: 4px;
+        position: absolute;
+
+        cursor: pointer;
+      }
+
+      .favorite-button.active {
+        color: gold;
+      }
+
+      .no-photos {
+        text-align: center;
+        color: #999;
+      }
+
+      form {
+        margin-bottom: 20px;
+      }
+      .grandChild {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        grid-gap: 10px;
+      }
+    </style>
+    <script src="https://unpkg.com/vue@3.4.0"></script>
+  </head>
+
+  <body>
+    <div id="app">
+      <form @submit.prevent="informationPhoto()">
+        <input type="text" v-model="imageUrl" placeholder="Enter Url Image" />
+        <input type="text" v-model="imageTitle" placeholder="Enter Title" />
+        <button>Add Child</button>
+      </form>
+      <form @submit.prevent="addGrandChild()">
+        <input type="text" v-model="imageGrandUrl" placeholder="Enter Url Image" />
+        <input type="text" v-model="imageGrandTitle" placeholder="Enter Title" />
+        <input type="text" v-model="indexOfImageChild" placeholder="Enter Title" />
+        <button>Add GrandChild</button>
+      </form>
+      <div class="gallery">
+        <div class="card" v-for="(image,index) in arrOfImage" :key="image.id">
+          <div class="title"> {{ image.title }}</div>
+          <img
+          :src="image.imageUrl"
+          />
+          <div class="grandChild" v-for="(grandChild,grandIndex) in image.children" :key="grandChild.id">
+            
+            <div class="title">{{ grandChild.title }}</div>
+            <img :src="grandChild.imageUrl" />
+            <div class="favorite-button">★</div>
+          </div>
+          <button @click="removeCard(index)">Remove</button>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      const { ref, createApp } = Vue;
+      const App = {
+        setup() {
+          const arrOfImage = ref([]);
+          const imageUrl = ref("");
+          const imageTitle = ref("");
+          const imageGrandUrl = ref("");
+          const imageGrandTitle = ref("");
+          const indexOfImageChild = ref("");
+          const informationPhoto = ()=> {
+            if(imageTitle.value !== '' && imageUrl.value !== ''){
+              const card =  {
+                id : arrOfImage.value.length +1,
+                title : imageTitle.value,
+                imageUrl: imageUrl.value,
+                isFavourite:false,
+                children : []
+              }
+            arrOfImage.value.push(card);
+            imageUrl.value = ''
+            imageTitle.value = ''
+            console.log(arrOfImage.value)
+          } else {
+            console.log("WRite Two Field")
+          }
+        }
+          const addGrandChild = ()=> {
+            const index = parseInt(indexOfImageChild.value);
+            console.log(index)
+            if(imageGrandUrl.value !== '' && imageGrandTitle.value !== '' && indexOfImageChild.value < arrOfImage.value.length){
+            const cardGrand = {
+              id : arrOfImage.value[index].children.length +1,
+              title : imageGrandTitle.value,
+              imageUrl: imageGrandUrl.value,
+            }
+            arrOfImage.value[index].children.push(cardGrand);
+            imageGrandUrl.value = ''
+            imageGrandTitle.value = ''
+            indexOfImageChild.value = ''
+          } else {
+            console.log("WRite index Field")
+          }
+        }
+        const removeCard = (index)=>{
+          arrOfImage.value.splice(index,1)
+        }
+        return {
+            arrOfImage,
+            informationPhoto,
+            imageUrl,
+            imageTitle,
+            imageGrandUrl,
+            imageGrandTitle,
+            addGrandChild,
+            indexOfImageChild,
+            removeCard
+          };
+        },
+      };
+      createApp(App).mount("#app");
+    </script>
+  </body>
+</html>
