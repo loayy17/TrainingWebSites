@@ -10,7 +10,7 @@
         <div class="space-y-4">
         <p>{{ description }}</p>
           <div class="flex justify-end p-4">
-            <RegisteerButton @click="$emit('register')">Register</RegisteerButton>
+            <RegisteerButton @click="$emit('register')"> Register</RegisteerButton>
           </div>
         </div>
       </template>
@@ -23,7 +23,8 @@ import SectionCard from './SectionCard.vue';
 defineProps({
   title: String,
   when: String,
-  description: String
+  description: String,
+  buttonRegister :String
 });
 defineEmits(['register']);
 </script>

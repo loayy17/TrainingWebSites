@@ -15,16 +15,6 @@
 <script setup lang="ts">
 </script>
 <style scoped>
-
-.container {
-  display: flex;
-  justify-content: center;
-}
-.screen {
-  display: flex;
-  justify-content: center;
-  margin: 0 auto;
-}
 button {
   padding: 100px;
   margin: 25px;

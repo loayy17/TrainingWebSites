@@ -1,45 +1,55 @@
 <template>
   <div class="container">
-    <button @click="changeColor(`red`)" style="background-color: red">{{ colorGrandChild }}</button>
-    <button @click="changeColor(`yellow`)" style="background-color: yellow"></button>
-    <button  @click="changeColor(`green`)" style="background-color: green"></button>
-    <button @click="changeColor(`black`)" style="background-color: black"></button>
-    <button @click="changeColor(`blue`)" style="background-color: blue"></button>
-    <button @click="changeColor(`purple`)" style="background-color: purple"></button>
-  </div>
-  <div class="screen">
-    <span :style="{backgroundColor:color}"></span>
+    <h1>GrandChild</h1>
+    <div class="button-group">
+      <button style="background-color: red"></button>
+      <button style="background-color: yellow"></button>
+      <button style="background-color: green"></button>
+      <button style="background-color: black"></button>
+      <button style="background-color: blue"></button>
+      <button style="background-color: purple"></button>
+    </div>
+    <div class="screen h-50 w-25" :style="{ 'background-color': GrandColor,'color':'white' }"> from child
+    </div>
+      <div class="screen h-50 w-25" :style="{ 'background-color': GrandChild , 'color': 'black'}"> from parent</div>
+
   </div>
 </template>
 
 <script setup lang="ts">
-import { ref,inject,provide } from 'vue';
-let colorGrandChild = ref('white')
-const changeColor = (value: any) => {
-  colorGrandChild.value = value
-}
-provide ('colorGrandChild',colorGrandChild)
-let color = inject("color",'white')
+import {inject} from 'vue'
+let GrandChild = inject('grandChildColor' ,'black')
+defineProps({
+  GrandColor: String,
+});
 </script>
-<style scoped>
 
+<style scoped>
 .container {
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  border: 2px solid #000;
+  padding: 20px;
+  margin: 20px 0;
 }
+
+.button-group {
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 20px;
+}
+
+button {
+  padding: 20px;
+  margin: 10px;
+}
+
 .screen {
   display: flex;
   justify-content: center;
-  margin: 0 auto;
-}
-button {
-  padding: 100px;
-  margin: 25px;
-
-}
-span {
-  margin-top: 2%;
-padding: 1000px;
-margin: 10px auto;
+  width: 100%;
+  border: 2px solid #000;
+  padding: 20px;
 }
 </style>

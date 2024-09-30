@@ -1,0 +1,118 @@
+{
+  "events": [
+    {
+      "id": "1",
+      "title": "Javascript Course 2022",
+      "date": "01/01/2023",
+      "description": "Join us for a day of insightful talks and networking with industry leaders in technology",
+      "location": "Amman , Jordan"
+    },
+    {
+      "id": "2",
+      "title": "Python Course 2022",
+      "date": "10/01/2023",
+      "description": "Join us To learn master of python and ML",
+      "location": "Adan , Jordan"
+    },
+    {
+      "id": "3",
+      "title": "PHP Course 2022",
+      "date": "21/01/2023",
+      "description": "Join us for a day of insightful talks and networking with industry leaders in technology",
+      "location": "Ma`an , Jordan"
+    },
+    {
+      "id": "4",
+      "title": "RPA Course 2022",
+      "date": "15/01/2023",
+      "description": "Join us for a day of insightful talks and networking with industry leaders in technology",
+      "location": "Zarqa`a , Jordan"
+    },
+    {
+      "id": "5",
+      "title": "Machine Learning Course 2022",
+      "date": "31/01/2023",
+      "description": "Join us for a day of insightful talks and networking with industry leaders in technology",
+      "location": "Aqaba , Jordan"
+    },
+    {
+      "id": "6",
+      "title": "Typescript Course 2022",
+      "date": "07/01/2023",
+      "description": "Join us for a day of insightful talks and networking with industry leaders in technology",
+      "location": "Irbid , Jordan"
+    }
+  ],
+  "bookings": [
+    {
+      "id": "1727605083996",
+      "userId": 1,
+      "eventId": "6",
+      "eventTitle": "Typescript Course 2022",
+      "status": "confirmed"
+    },
+    {
+      "id": "1727605399089",
+      "userId": 1,
+      "eventId": "6",
+      "eventTitle": "Typescript Course 2022",
+      "status": "confirmed"
+    },
+    {
+      "id": "1727605407981",
+      "userId": 1,
+      "eventId": "6",
+      "eventTitle": "Typescript Course 2022",
+      "status": "confirmed"
+    },
+    {
+      "id": "1727605493040",
+      "userId": 1,
+      "eventId": "6",
+      "eventTitle": "Typescript Course 2022",
+      "status": "confirmed"
+    },
+    {
+      "id": "1727605520136",
+      "userId": 1,
+      "eventId": "2",
+      "eventTitle": "Python Course 2022",
+      "status": "confirmed"
+    },
+    {
+      "id": "1727605520868",
+      "userId": 1,
+      "eventId": "1",
+      "eventTitle": "Javascript Course 2022",
+      "status": "confirmed"
+    },
+    {
+      "id": "1727605521600",
+      "userId": 1,
+      "eventId": "3",
+      "eventTitle": "PHP Course 2022",
+      "status": "confirmed"
+    },
+    {
+      "id": "1727605522368",
+      "userId": 1,
+      "eventId": "4",
+      "eventTitle": "RPA Course 2022",
+      "status": "confirmed"
+    },
+    {
+      "id": "1727605522939",
+      "userId": 1,
+      "eventId": "6",
+      "eventTitle": "Typescript Course 2022",
+      "status": "confirmed"
+    },
+    {
+      "id": "1727605523624",
+      "userId": 1,
+      "eventId": "5",
+      "eventTitle": "Machine Learning Course 2022",
+      "status": "confirmed"
+    }
+  ]
+}

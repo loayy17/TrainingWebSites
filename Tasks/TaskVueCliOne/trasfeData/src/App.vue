@@ -1,49 +1,70 @@
 <template>
   <div class="container">
-    <button @click="changeColor(`red`)" style="background-color: red">{{ colorFromChild }}</button>
-    <button @click="changeColor(`yellow`)" style="background-color: yellow"></button>
-    <button  @click="changeColor(`green`)" style="background-color: green"></button>
-    <button @click="changeColor(`black`)" style="background-color: black"></button>
-    <button @click="changeColor(`blue`)" style="background-color: blue"></button>
-    <button @click="changeColor(`purple`)" style="background-color: purple"></button>
-  </div>
-  <div class="screen">
-    <span :style="{backgroundColor:colorFromChild}" ><childOne></childOne></span>
-    
+    <h1>Parent</h1>
+    <div class="button-group">
+      <button @click="changeColor('red')" style="background-color: red"></button>
+      <button @click="changeColor('yellow')" style="background-color: yellow"></button>
+      <button @click="changeColor('green')" style="background-color: green"></button>
+      <button @click="changeColor('black')" style="background-color: black"></button>
+      <button @click="changeColor('blue')" style="background-color: blue"></button>
+      <button @click="changeColor('purple')" style="background-color: purple"></button>
+    </div>
+    <h2>grandChildControl</h2>
+    <div class="button-group">
+      <button @click="changeGrandColor('red')" style="background-color: red"></button>
+      <button @click="changeGrandColor('yellow')" style="background-color: yellow"></button>
+      <button @click="changeGrandColor('green')" style="background-color: green"></button>
+      <button @click="changeGrandColor('black')" style="background-color: black"></button>
+      <button @click="changeGrandColor('blue')" style="background-color: blue"></button>
+      <button @click="changeGrandColor('purple')" style="background-color: purple"></button>
+    </div>
+    <div class="screen">
+      <childOne :Childcolor="Parentcolor"></childOne>
+    </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import {ref,provide,inject } from 'vue'
+import { provide, ref, inject } from 'vue';
 import childOne from './childOne.vue';
-const color = ref("white")
-const changeColor = (value: any) => {
-  color.value = value
-}
-provide('color', color)
-const colorFromChild = inject('colorGrandChild','white')
-console.log(colorFromChild)
-</script>
-<style scoped>
 
+const Parentcolor = ref('white');
+const GrandChildColor = ref('white')
+const changeColor = (value: string) => {
+  Parentcolor.value = value;
+};
+const changeGrandColor = (value: string) => {
+  GrandChildColor.value = value;
+};
+provide('grandChildColor',GrandChildColor)
+
+</script>
+
+<style scoped>
 .container {
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  border: 2px solid #000;
+  padding: 20px;
 }
+
+.button-group {
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 20px;
+}
+
+button {
+  padding: 40px;
+  margin: 10px;
+}
+
 .screen {
+  width: 100%;
   display: flex;
   justify-content: center;
-
-}
-button {
-  padding: 100px;
-  margin: 25px;
-
-}
-span {
-  align-self: center;
-  margin-top: 2%;
-padding: 1000px;
-margin: 10px auto;
+  border: 2px solid #000;
+  padding: 20px;
 }
 </style>
